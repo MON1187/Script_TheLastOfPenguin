@@ -51,9 +51,8 @@ public class PenguinStatusUI : MonoBehaviour
 
         if (damageImage != null)
         {
-            Debug.Log("Åõ¸íÈ­ ABCDEFG");
-            damageImage.color = new Color(1, 0, 0, 0); // ¿ÏÀü Åõ¸íÇÑ »¡°£»ö
-            damageImage2.color = new Color(1, 0, 0, 0); // ¿ÏÀü Åõ¸íÇÑ »¡°£»ö
+            damageImage.color = new Color(1, 0, 0, 0); // ì™„ì „ íˆ¬ëª…í•œ ë¹¨ê°„ìƒ‰
+            damageImage2.color = new Color(1, 0, 0, 0); // ì™„ì „ íˆ¬ëª…í•œ ë¹¨ê°„ìƒ‰
         }
     }
     #endregion
@@ -73,19 +72,19 @@ public class PenguinStatusUI : MonoBehaviour
         timeBar.value = Mathf.Lerp(0, timeBar.maxValue, currTime / TimeManager.Instance.MaxDayTime);
     }
 
-    #region ÇÇ°Ý ¿¬Ãâ
+    #region í”¼ê²© ì—°ì¶œ
     [Header("Hit Effect Assets")]
-    public Image damageImage;          // ºÓÀº»öÀ¸·Î ±ôºýÀÏ Image
-    public Image damageImage2;          // ºÓÀº»öÀ¸·Î ±ôºýÀÏ Image
-    public float flashDuration = 0.5f; // ºÓÀº»öÀÌ À¯ÁöµÇ´Â ½Ã°£
-    public float fadeSpeed = 2f;       // ºÓÀº»öÀÌ »ç¶óÁö´Â ¼Óµµ
+    public Image damageImage;          // ë¶‰ì€ìƒ‰ìœ¼ë¡œ ê¹œë¹¡ì¼ Image
+    public Image damageImage2;          // ë¶‰ì€ìƒ‰ìœ¼ë¡œ ê¹œë¹¡ì¼ Image
+    public float flashDuration = 0.5f; // ë¶‰ì€ìƒ‰ì´ ìœ ì§€ë˜ëŠ” ì‹œê°„
+    public float fadeSpeed = 2f;       // ë¶‰ì€ìƒ‰ì´ ì‚¬ë¼ì§€ëŠ” ì†ë„
 
     public void FlashRed()
     {
-        // ÇÇ°Ý ½Ã »¡°£»öÀ¸·Î º¯°æ
+        // í”¼ê²© ì‹œ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ ë³€ê²½
         if (damageImage != null)
         {
-            damageImage.color = new Color(1, 0, 0, 0.5f); // ¹ÝÅõ¸íÇÑ »¡°£»ö
+            damageImage.color = new Color(1, 0, 0, 0.5f); // ë°˜íˆ¬ëª…í•œ ë¹¨ê°„ìƒ‰
             damageImage2.color = new Color(1, 0, 0, 0.5f);
             StartCoroutine(FadeOut());
         }
@@ -95,17 +94,23 @@ public class PenguinStatusUI : MonoBehaviour
     {
         yield return new WaitForSeconds(flashDuration);
 
-        // Á¡Á¡ Åõ¸íÇØÁöµµ·Ï
+        // ì ì  íˆ¬ëª…í•´ì§€ë„ë¡
         while (damageImage.color.a > 0)
         {
-            Color color = damageImage.color;
-            Color color2 = damageImage2.color;
-            color.a -= Time.deltaTime * fadeSpeed;
-            color2.a -= Time.deltaTime * fadeSpeed;
+            FadeImage(damageImage);
+            FadeImage(damageImage2);
             damageImage.color = color;
             damageImage2.color = color2;
             yield return null;
         }
+    }
+
+    void FadeImage(Image img)
+    {
+        if (img == null) return;
+        Color color = img.color;
+        color.a -= Time.deltaTime * fadeSpeed;
+        img.color = color;
     }
     #endregion 
 }
