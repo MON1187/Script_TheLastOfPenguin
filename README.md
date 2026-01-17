@@ -6,6 +6,8 @@ Unity 기반 프로젝트인 The Last Of Penguin 프로젝트에서 작업한 �
 
 프로젝트 The Last Of Penguin을 진행하며 담당하여 개발한 결과물들만 정리하여 제공합니다.
 
+
+
 ## 코드 개요
 
 폴더내의 있는 스크립트를 정리하여 기능의 필요한 로직간의 관계에 초점을 맞춰 설명드립니다.
@@ -18,7 +20,7 @@ Unity 기반 프로젝트인 The Last Of Penguin 프로젝트에서 작업한 �
  제작 당시에는 NormalPenguin으로만 진행되어, 형태만 만들어둔 상태 였습니다.
 
 
-### Character Function - Refactoring Forder
+#### Character Function - Refactoring Forder
 
 - penguin Body
   캐릭터의 상태를 관리하는 스크립트 입니다.
